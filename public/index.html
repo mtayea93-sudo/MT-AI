@@ -539,7 +539,7 @@
 <script>
 // ================== Mt Ai STANDALONE MODE (بدون Backend — يشتغل على GitHub Pages مباشرة) ==================
 // ⚠️ ضع مفتاح Gemini API Key بتاعك في السطر الجاي (بين علامتي التنصيص) — هتلاقي واحد من aistudio.google.com/apikey
-const API_KEY = "AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g";
+const API_KEY = "const API_KEY = "AQ.Ab8RN6JWGIb67I46UVfigbNR_MJOLVgGJvCA5A1dGJ8gN_iTLQ";";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${API_KEY}`;
 
 const _demoScript = generateScript, _demoImage = generateImage; // احتفظ بالوضع التجريبي كـ fallback
@@ -563,7 +563,7 @@ generateScript = async function(){
   const topic=document.getElementById('topic').value.trim();
   const out=document.getElementById('scriptOutput');
   if(!topic){ out.innerHTML='<span class="placeholder">⚠️ اكتب الموضوع الأول</span>'; return; }
-  if(API_KEY==="AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
+  if(API_KEY==="const API_KEY = "AQ.Ab8RN6JWGIb67I46UVfigbNR_MJOLVgGJvCA5A1dGJ8gN_iTLQ";"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
   clearInterval(typingTimer);
   out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري التوليد بواسطة Gemini...</div>';
   try{
@@ -604,7 +604,7 @@ generateImage = async function(){
   const count=parseInt(document.getElementById('icount').value);
   const out=document.getElementById('imageOutput');
   if(!prompt){ out.innerHTML='<span class="placeholder">⚠️ اكتب وصف الصورة الأول</span>'; return; }
-  if(API_KEY==="AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
+  if(API_KEY==="const API_KEY = "AQ.Ab8RN6JWGIb67I46UVfigbNR_MJOLVgGJvCA5A1dGJ8gN_iTLQ";"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
   const dims=ratio.match(/(\d+)×(\d+)/);
   const W=dims[1], H=dims[2];
   out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري تجهيز الوصف وتوليد الصور...</div>';
