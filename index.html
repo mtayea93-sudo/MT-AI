@@ -443,7 +443,8 @@ generateImage = async function(){
   out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري توليد صور حقيقية...</div>';
   try{
     let fullPrompt = prompt;
-    try{ fullPrompt = await geminiText(`Rewrite this image description as ONE detailed English image-generation prompt (subject, environment, lighting, mood, camera style). Output ONLY the prompt.\nDescription: ${prompt}`); }catch(_){}
+    try{ fullPrompt = await geminiText(`Rewrite this image description as a short English image prompt, maximum 40 words. Output ONLY the prompt.\nDescription: ${prompt}`); }catch(_){}
+    fullPrompt = fullPrompt.replace(/["'`]/g,'').replace(/\s+/g,' ').trim().slice(0,350);
     out.innerHTML=`<div class="img-grid ${count===1?'single':''}"></div>`;
     const grid=out.querySelector('.img-grid');
     for(let k=0;k<count;k++){
@@ -463,6 +464,5 @@ generateImage = async function(){
   }catch(e){ out.innerHTML='<span class="placeholder">🔴 خطأ: '+escapeHtml(e.message)+'</span>'; setTimeout(_demoImage,4000); }
 };
 </script>
-<script src="mtayea-signature.js"></script>
 </body>
 </html>
