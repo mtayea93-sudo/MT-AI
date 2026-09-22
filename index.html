@@ -23,8 +23,6 @@
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
   body{background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
   .container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-  /* ===== Navbar ===== */
   nav{position:sticky;top:0;z-index:50;background:rgba(11,15,26,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.3rem}
@@ -37,8 +35,6 @@
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(109,93,246,.5)}
   .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
   .btn-ghost:hover{border-color:var(--primary);color:#fff}
-
-  /* ===== Hero ===== */
   .hero{padding:90px 0 60px;text-align:center;position:relative}
   .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(109,93,246,.18),transparent);pointer-events:none}
   .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border-radius:99px;background:rgba(109,93,246,.12);border:1px solid rgba(109,93,246,.35);color:#c4b5fd;font-size:.85rem;font-weight:700;margin-bottom:24px}
@@ -48,14 +44,10 @@
   .gradient-text{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero p{color:var(--muted);font-size:1.15rem;max-width:640px;margin:0 auto 36px;line-height:1.9}
   .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-
-  /* ===== Stats ===== */
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:50px 0 0}
   .stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-align:center}
   .stat b{display:block;font-size:1.7rem;font-weight:900;color:var(--accent)}
   .stat span{color:var(--muted);font-size:.9rem}
-
-  /* ===== Workspace ===== */
   .workspace{padding:70px 0}
   .section-head{text-align:center;margin-bottom:40px}
   .section-head h2{font-size:2rem;font-weight:900;margin-bottom:10px}
@@ -66,10 +58,8 @@
   .panel{display:none;animation:fadeIn .4s}
   .panel.active{display:block}
   @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
   .tool-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:24px}
   @media(max-width:900px){.tool-grid{grid-template-columns:1fr}.nav-links a:not(.btn){display:none}}
-
   .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px}
   .card h3{font-size:1.1rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
   .field{margin-bottom:18px}
@@ -79,22 +69,15 @@
   .field textarea{min-height:90px;resize:vertical}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media(max-width:520px){.row{grid-template-columns:1fr}}
-
   .output-box{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:20px;min-height:320px;max-height:480px;overflow-y:auto;line-height:2;font-size:.95rem;position:relative}
   .output-box .placeholder{color:var(--muted);text-align:center;padding-top:110px;display:block}
   .output-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
   .btn-sm{padding:9px 18px;font-size:.88rem}
-
-  /* typing cursor */
   .cursor{display:inline-block;width:2px;height:1.1em;background:var(--accent);vertical-align:middle;animation:blink .8s infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-  /* loader */
   .loader{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.9rem;justify-content:center;padding-top:120px}
   .spinner{width:22px;height:22px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-
-  /* video mock */
   .video-mock{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
   .video-mock .play-btn{width:70px;height:70px;border-radius:50%;background:rgba(109,93,246,.85);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;border:none}
   .video-mock .play-btn:hover{transform:scale(1.1);background:var(--primary)}
@@ -105,8 +88,6 @@
   .vm-item{background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
   .vm-item span{display:block;font-size:.78rem;color:var(--muted);margin-bottom:4px}
   .vm-item b{font-size:.95rem}
-
-  /* features */
   .features{padding:60px 0 80px}
   .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
   .feature{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:.25s}
@@ -114,13 +95,17 @@
   .feature .icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;background:rgba(109,93,246,.12);border:1px solid rgba(109,93,246,.3)}
   .feature h4{font-weight:800;margin-bottom:8px}
   .feature p{color:var(--muted);font-size:.9rem;line-height:1.8}
-
   footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;color:var(--muted);font-size:.88rem}
+  .img-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .img-grid.single{grid-template-columns:1fr}
+  .img-grid img{width:100%;aspect-ratio:1;border-radius:12px;border:1px solid var(--border);cursor:pointer;transition:.25s;display:block;background:#000}
+  .img-grid img:hover{transform:scale(1.03);border-color:var(--primary)}
+  .img-tag{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.7);padding:3px 10px;border-radius:8px;font-size:.72rem;font-weight:700}
+  .img-wrap{position:relative;overflow:hidden;border-radius:12px}
 </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <nav>
   <div class="container nav-inner">
     <div class="logo"><div class="logo-badge">🎬</div> Mt<span style="color:var(--accent)">Ai</span></div>
@@ -133,12 +118,11 @@
   </div>
 </nav>
 
-<!-- Hero -->
 <header class="hero" id="home">
   <div class="container">
     <div class="badge"><span class="dot"></span> مدعوم بأحدث نماذج الذكاء الاصطناعي</div>
-    <h1>اكتب سكريبتك، وولّد فيديوهاتك<br><span class="gradient-text">بأي لغة.. في ثواني</span></h1>
-    <p>منصة واحدة تجمع توليد السكريبتات بأسلوب احترافي وتوليد الفيديوهات جاهزة للنشر — لصنّاع المحتوى، المسوقين، وروّاد الأعمال.</p>
+    <h1>اكتب سكريبتك، وولّد فيديوهاتك وصورك<br><span class="gradient-text">بأي لغة.. في ثواني</span></h1>
+    <p>منصة واحدة تجمع توليد السكريبتات بأسلوب احترافي، وتوليد الفيديوهات والصور الفائقة الجودة جاهزة للنشر — لصنّاع المحتوى، المسوقين، وروّاد الأعمال.</p>
     <div class="hero-actions">
       <a href="#workspace" class="btn btn-primary">🚀 جرّب الأداة الآن</a>
       <a href="#features" class="btn btn-ghost">شاهد المميزات</a>
@@ -152,12 +136,11 @@
   </div>
 </header>
 
-<!-- Workspace -->
 <section class="workspace" id="workspace">
   <div class="container">
     <div class="section-head">
       <h2>مساحة العمل</h2>
-      <p>اختار الأداة وابدأ التوليد فوراً — دي نسخة تجريبية عشان نشوف الشكل</p>
+      <p>اختار الأداة وابدأ التوليد فوراً</p>
     </div>
 
     <div class="tabs">
@@ -166,7 +149,6 @@
       <button class="tab" data-tab="image" onclick="switchTab('image')">🖼️ مولّد الصور</button>
     </div>
 
-    <!-- Script Panel -->
     <div class="panel active" id="panel-script">
       <div class="tool-grid">
         <div class="card">
@@ -237,7 +219,6 @@
       </div>
     </div>
 
-    <!-- Video Panel -->
     <div class="panel" id="panel-video">
       <div class="tool-grid">
         <div class="card">
@@ -290,24 +271,23 @@
       </div>
     </div>
 
-    <!-- Image Panel -->
     <div class="panel" id="panel-image">
       <div class="tool-grid">
         <div class="card">
           <h3>⚙️ إعدادات الصورة</h3>
           <div class="field">
             <label>وصف الصورة (Prompt)</label>
-            <textarea id="itopic" placeholder="مثال: قطة برتقالية بتتفرج على غروب الشمس من على سطح، إضاءة سينمائية دافئة..."></textarea>
+            <textarea id="itopic" placeholder="مثال: قطة برتقالية بتتفرج على غروب الشمس، إضاءة سينمائية دافئة..."></textarea>
           </div>
           <div class="row">
             <div class="field">
               <label>الأسلوب</label>
               <select id="istyle">
-                <option>واقعي فائق (Ultra Realistic)</option>
-                <option>سينمائي (Cinematic)</option>
+                <option>واقعي فائق</option>
+                <option>سينمائي</option>
                 <option>أنمي</option>
                 <option>زيتي كلاسيكي</option>
-                <option>ثلاثي الأبعاد 3D Render</option>
+                <option>ثلاثي الأبعاد</option>
                 <option>بيكسل آرت</option>
               </select>
             </div>
@@ -325,9 +305,9 @@
           <div class="field">
             <label>عدد الصور</label>
             <select id="icount">
-              <option>1 صورة</option>
-              <option>2 صورة</option>
-              <option>4 صور</option>
+              <option>1</option>
+              <option>2</option>
+              <option>4</option>
             </select>
           </div>
           <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="generateImage()">🖼️ توليد الصور بأعلى جودة</button>
@@ -348,7 +328,6 @@
   </div>
 </section>
 
-<!-- Features -->
 <section class="features" id="features">
   <div class="container">
     <div class="section-head">
@@ -375,44 +354,22 @@
     document.getElementById('panel-'+tab).classList.add('active');
   }
 
-  // ---------- Script Generator (mock demo) ----------
   const scriptTemplates = {
-    'العربية': (topic,type,tone)=>{
-      return `🎬 عنوان مقترح: "${topic.length>40?topic.slice(0,40)+'…':topic}"\n\n`+
-`── المشهد الافتتاحي (Hook) ──\nأهلاً بيكم في فيديو جديد! النهاردة هنتكلم عن: ${topic}. لو أول مرة تشوفنا، متنساش تعمل subscribe 🔔\n\n`+
-`── المحتوى الرئيسي ──\nفي البداية لازم نفهم إن ${topic} مش مجرد موضوع عابر، ده محور مهم جداً لأي حد عايز ينجح في مجاله.\n\nأول نقطة: لازم تركز على الأساسيات وتبني معرفتك خطوة بخطوة، لأن الاستعجال بيضيّع وقتك ومجهودك.\n\nتاني نقطة: التطبيق العملي هو السر الحقيقي — كل ما تطبقت أكتر، كل ما اكتسبت مهارة أسرع.\n\nثالث نقطة: تعلّم من أخطاء الآخرين بدل ما تعيد نفس الأخطاء، ده بيوفر عليك شهور من التجربة والخطأ.\n\n`+
-`── الخاتمة (Call to Action) ──\nلو الفيديو عجبكم، اعملوا لايك وشاركوه مع صحابكم، وقولولي في الكومنتات إيه أكتر حاجة حابين نتكلم عنها في الفيديو الجاي 👇`;
-    },
-    'English': (topic,type,tone)=>{
-      return `🎬 Suggested Title: "${topic.length>50?topic.slice(0,50)+'…':topic}"\n\n`+
-`── OPENING HOOK ──\nWhat's up everyone! Today we're diving deep into: ${topic}. If you're new here, make sure to hit that subscribe button 🔔\n\n`+
-`── MAIN CONTENT ──\nLet's start with the basics. ${topic} is one of the most important topics you need to master right now.\n\nPoint 1: Focus on the fundamentals and build your knowledge step by step.\nPoint 2: Practice consistently — real progress comes from doing, not just watching.\nPoint 3: Learn from others' mistakes instead of repeating them yourself.\n\n`+
-`── CLOSING / CTA ──\nIf you found this valuable, smash that like button and share it with a friend. Drop a comment below telling me what I should cover next 👇`;
-    }
+    'العربية': (topic)=>`🎬 عنوان مقترح: "${topic.slice(0,40)}"\n\n── المشهد الافتتاحي ──\nأهلاً بيكم! النهاردة هنتكلم عن: ${topic}.\n\n── المحتوى الرئيسي ──\nأول نقطة: ركز على الأساسيات.\nتاني نقطة: التطبيق العملي هو السر.\nثالث نقطة: اتعلم من أخطاء الآخرين.\n\n── الخاتمة ──\nلو عجبكم الفيديو اعملوا لايك وشاركوه 👇`,
+    'English': (topic)=>`🎬 Title: "${topic.slice(0,40)}"\n\n── HOOK ──\nWelcome! Today: ${topic}.\n\n── MAIN ──\nPoint 1: Master the basics.\nPoint 2: Practice consistently.\nPoint 3: Learn from others.\n\n── CTA ──\nLike & subscribe 👇`
   };
-
   let typingTimer=null;
   function generateScript(){
     const topic=document.getElementById('topic').value.trim();
-    const lang=document.getElementById('lang').value;
-    const type=document.getElementById('type').value;
-    const tone=document.getElementById('tone').value;
     const out=document.getElementById('scriptOutput');
     if(!topic){ out.innerHTML='<span class="placeholder">⚠️ اكتب الموضوع الأول</span>'; return; }
     clearInterval(typingTimer);
-    out.innerHTML='<div class="loader"><div class="spinner"></div> جاري التوليد بالذكاء الاصطناعي...</div>';
+    out.innerHTML='<div class="loader"><div class="spinner"></div> جاري التوليد...</div>';
     setTimeout(()=>{
-      const tpl=scriptTemplates[lang]||scriptTemplates['English'];
-      const text=tpl(topic,type,tone).replace(/\n/g,'\n');
-      out.innerHTML='';
-      let i=0;
-      typingTimer=setInterval(()=>{
-        i+=3;
-        out.innerHTML=escapeHtml(text.slice(0,i)).replace(/\n/g,'<br>')+'<span class="cursor"></span>';
-        out.scrollTop=out.scrollHeight;
-        if(i>=text.length){ clearInterval(typingTimer); out.innerHTML=escapeHtml(text).replace(/\n/g,'<br>'); }
-      },18);
-    },1400);
+      const text=(scriptTemplates[document.getElementById('lang').value]||scriptTemplates['English'])(topic);
+      out.innerHTML='';let i=0;
+      typingTimer=setInterval(()=>{i+=3;out.innerHTML=escapeHtml(text.slice(0,i)).replace(/\n/g,'<br>')+'<span class="cursor"></span>';out.scrollTop=out.scrollHeight;if(i>=text.length){clearInterval(typingTimer);out.innerHTML=escapeHtml(text).replace(/\n/g,'<br>');}},18);
+    },1200);
   }
 
   function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
@@ -423,224 +380,95 @@
   }
   function clearScript(){clearInterval(typingTimer);document.getElementById('scriptOutput').innerHTML='<span class="placeholder">📝 النتيجة هتظهر هنا بعد ما تضغط "توليد السكريبت"</span>';}
 
-  // ---------- Video Generator (mock demo) ----------
   function generateVideo(){
     const topic=document.getElementById('vtopic').value.trim();
-    const style=document.getElementById('vstyle').value;
-    const ratio=document.getElementById('vratio').value;
-    const dur=document.getElementById('vdur').value;
-    const out=document.getElementById('videoOutput');
-    if(!topic){ out.innerHTML='<span class="placeholder">⚠️ اكتب الوصف الأول</span>'; return; }
-    out.innerHTML='<div class="loader"><div class="spinner"></div> جاري توليد الفيديو... قد يستغرق دقيقة</div>';
+    if(!topic){ document.getElementById('videoOutput').innerHTML='<span class="placeholder">⚠️ اكتب الوصف الأول</span>'; return; }
+    document.getElementById('videoOutput').innerHTML='<div class="loader"><div class="spinner"></div> جاري توليد الفيديو...</div>';
     setTimeout(()=>{
-      out.innerHTML='';
-      out.style.display='block';
-      out.innerHTML=`
-        <div style="width:100%">
-          <div class="video-mock">
-            <span class="rec"><i></i> PREVIEW</span>
-            <button class="play-btn" onclick="alert('▶️ في النسخة النهائية هيتشغل الفيديو الحقيقي هنا')">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-          </div>
-          <div class="video-meta">
-            <div class="vm-item"><span>الأسلوب</span><b>${style}</b></div>
-            <div class="vm-item"><span>الأبعاد</span><b>${ratio.split(' ')[0]}</b></div>
-            <div class="vm-item"><span>المدة</span><b>${dur}</b></div>
-            <div class="vm-item"><span>الجودة</span><b>1080p HD</b></div>
-          </div>
-          <p style="color:var(--muted);font-size:.85rem;margin-top:14px;line-height:1.8">🎞️ الموضوع: "${escapeHtml(topic.slice(0,90))}"<br>✅ تم التوليد بنجاح — دي معاينة تجريبية، والفيديو الحقيقي هيشتغل هنا في النسخة النهائية.</p>
-        </div>`;
-    },2200);
+      document.getElementById('videoOutput').innerHTML=`<div style="width:100%"><div class="video-mock"><span class="rec"><i></i> PREVIEW</span><button class="play-btn" onclick="alert('▶️ فيديو تجريبي')"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></button></div><p style="color:var(--muted);font-size:.85rem;margin-top:14px">🎞️ "${escapeHtml(topic.slice(0,90))}" — معاينة تجريبية</p></div>`;
+    },1500);
   }
 
-  // ---------- Image Generator (procedural high-quality mock) ----------
   let lastImageData=null;
-  function hashStr(s){let h=0;for(let i=0;i<s.length;i++){h=(h<<5)-h+s.charCodeAt(i);h|=0}return Math.abs(h);}
-
   function generateImage(){
     const prompt=document.getElementById('itopic').value.trim();
-    const style=document.getElementById('istyle').value;
-    const ratio=document.getElementById('iratio').value;
-    const count=document.getElementById('icount').value;
     const out=document.getElementById('imageOutput');
     if(!prompt){ out.innerHTML='<span class="placeholder">⚠️ اكتب وصف الصورة الأول</span>'; return; }
-    out.innerHTML='<div class="loader"><div class="spinner"></div> جاري توليد الصور بدقة عالية...</div>';
+    out.innerHTML='<div class="loader"><div class="spinner"></div> جاري التوليد...</div>';
     setTimeout(()=>{
+      const ratio=document.getElementById('iratio').value;
       const dims=ratio.match(/(\d+)×(\d+)/);
-      const W=parseInt(dims[1]), H=parseInt(dims[2]);
-      const n=parseInt(count);
-      out.innerHTML=`<div class="img-grid ${n===1?'single':''}"></div>`;
-      const grid=out.querySelector('.img-grid');
-      for(let k=0;k<n;k++){
-        const seed=hashStr(prompt+'|'+style+'|'+k);
-        const rnd=(i)=>{const x=Math.sin(seed+i*137.5)*10000;return x-Math.floor(x);};
-        const c=document.createElement('canvas');c.width=W;c.height=H;
-        const x=c.getContext('2d');
-        // background gradient from seed
-        const hues=[rnd(1)*360,rnd(2)*360];
-        const g=x.createLinearGradient(0,0,W,H);
-        g.addColorStop(0,`hsl(${hues[0]},70%,12%)`);
-        g.addColorStop(1,`hsl(${hues[1]},75%,22%)`);
-        x.fillStyle=g;x.fillRect(0,0,W,H);
-        // glowing orbs
-        for(let i=0;i<14;i++){
-          const gx=rnd(10+i)*W, gy=rnd(20+i)*H, r=(0.05+rnd(30+i)*0.25)*Math.max(W,H);
-          const rg=x.createRadialGradient(gx,gy,0,gx,gy,r);
-          const h=hues[i%2]+rnd(40+i)*60;
-          rg.addColorStop(0,`hsla(${h},85%,60%,${0.25+rnd(50+i)*0.3})`);
-          rg.addColorStop(1,'transparent');
-          x.fillStyle=rg;x.beginPath();x.arc(gx,gy,r,0,7);x.fill();
-        }
-        // light streaks
-        x.globalCompositeOperation='overlay';
-        for(let i=0;i<6;i++){
-          x.strokeStyle=`hsla(${rnd(60+i)*360},90%,70%,0.15)`;
-          x.lineWidth=2+rnd(70+i)*8;
-          x.beginPath();
-          x.moveTo(rnd(80+i)*W,rnd(90+i)*H);
-          x.bezierCurveTo(rnd(100+i)*W,rnd(110+i)*H,rnd(120+i)*W,rnd(130+i)*H,rnd(140+i)*W,rnd(150+i)*H);
-          x.stroke();
-        }
-        x.globalCompositeOperation='source-over';
-        // vignette
-        const v=x.createRadialGradient(W/2,H/2,Math.min(W,H)*0.3,W/2,H/2,Math.max(W,H)*0.75);
-        v.addColorStop(0,'transparent');v.addColorStop(1,'rgba(0,0,0,.55)');
-        x.fillStyle=v;x.fillRect(0,0,W,H);
-        // label
-        x.fillStyle='rgba(255,255,255,.9)';x.font=`bold ${Math.round(W*0.018)}px Cairo, sans-serif`;
-        x.fillText('Mt Ai · '+style.split(' ')[0], W*0.03, H*0.955);
-        const url=c.toDataURL('image/png');
-        if(k===0) lastImageData=url;
-        const wrap=document.createElement('div');wrap.className='img-wrap';
-        const img=document.createElement('img');img.src=url;
-        img.onclick=()=>{lastImageData=url;const w=window.open();w.document.write(`<img src="${url}" style="max-width:100%">`);};
-        const tag=document.createElement('span');tag.className='img-tag';tag.textContent=`${W}×${H}`;
-        wrap.appendChild(img);wrap.appendChild(tag);grid.appendChild(wrap);
-      }
+      const W=dims[1],H=dims[2];
+      const c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+      const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#1a1040');g.addColorStop(1,'#0a2a4a');
+      x.fillStyle=g;x.fillRect(0,0,W,H);
+      for(let i=0;i<10;i++){const rg=x.createRadialGradient(Math.random()*W,Math.random()*H,0,Math.random()*W,Math.random()*H,Math.max(W,H)*.2);rg.addColorStop(0,`hsla(${Math.random()*360},80%,60%,.3)`);rg.addColorStop(1,'transparent');x.fillStyle=rg;x.fillRect(0,0,W,H);}
+      const url=c.toDataURL('image/png');lastImageData=url;
+      out.innerHTML=`<div class="img-grid single"><div class="img-wrap"><img src="${url}" onclick="window.open('${url}')"><span class="img-tag">${W}×${H}</span></div></div>`;
       document.getElementById('imgDownloadBtn').style.display='inline-flex';
-      const info=document.createElement('p');
-      info.style.cssText='color:var(--muted);font-size:.85rem;margin-top:12px;line-height:1.8';
-      info.innerHTML=`✅ تم توليد ${n} ${n===1?'صورة':'صور'} بدقة <b style="color:var(--accent)">${W}×${H}</b> بأسلوب "${escapeHtml(style)}"<br>🖱️ اضغط على أي صورة للمعاينة الكاملة · دي معاينة تجريبية، والصور الحقيقية بالذكاء الاصطناعي هتظهر هنا في النسخة النهائية.`;
-      out.appendChild(info);
-    },1600);
+    },1200);
   }
 
-  function downloadImage(){
-    if(!lastImageData) return;
-    const a=document.createElement('a');a.href=lastImageData;a.download='mtai-image.png';a.click();
-  }
-  function clearImages(){
-    document.getElementById('imageOutput').innerHTML='<span class="placeholder">🖼️ الصور هتظهر هنا بعد التوليد — جودة تصل إلى 4K</span>';
-    document.getElementById('imgDownloadBtn').style.display='none';lastImageData=null;
-  }
+  function downloadImage(){ if(!lastImageData) return; const a=document.createElement('a');a.href=lastImageData;a.download='mtai-image.png';a.click(); }
+  function clearImages(){document.getElementById('imageOutput').innerHTML='<span class="placeholder">🖼️ الصور هتظهر هنا بعد التوليد — جودة تصل إلى 4K</span>';document.getElementById('imgDownloadBtn').style.display='none';lastImageData=null;}
 </script>
 
 <script>
-// ================== Mt Ai STANDALONE MODE (بدون Backend — يشتغل على GitHub Pages مباشرة) ==================
-// ⚠️ ضع مفتاح Gemini API Key بتاعك في السطر الجاي (بين علامتي التنصيص) — هتلاقي واحد من aistudio.google.com/apikey
-const API_KEY = "AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g";
+// ================== Mt Ai STANDALONE MODE (GitHub Pages) ==================
+const API_KEY = "AQ.Ab8RN6JWGIb67I46UVfigbNR_MJOLVgGJvCA5A1dGJ8gN_iTLQ";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${API_KEY}`;
 
-const _demoScript = generateScript, _demoImage = generateImage; // احتفظ بالوضع التجريبي كـ fallback
+const _demoScript = generateScript, _demoImage = generateImage;
 
 async function geminiText(prompt){
-  const r = await fetch(GEMINI_URL, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({contents:[{parts:[{text:prompt}]}]})
-  });
-  if(!r.ok){
-    const t = await r.text();
-    throw new Error('Gemini error '+r.status+': '+t.slice(0,200));
-  }
+  const r = await fetch(GEMINI_URL, {method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
+  if(!r.ok){ throw new Error('Gemini error '+r.status); }
   const j = await r.json();
   return j.candidates[0].content.parts[0].text;
 }
 
-// مولّد السكريبت — مباشر من المتصفح
 generateScript = async function(){
   const topic=document.getElementById('topic').value.trim();
   const out=document.getElementById('scriptOutput');
   if(!topic){ out.innerHTML='<span class="placeholder">⚠️ اكتب الموضوع الأول</span>'; return; }
-  if(API_KEY==="AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
   clearInterval(typingTimer);
   out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري التوليد بواسطة Gemini...</div>';
   try{
-    const text = await geminiText(`أنت كاتب سكريبتات محتوى محترف.
-اكتب سكريبت كامل باللغة: ${document.getElementById('lang').value}
-نوع المحتوى: ${document.getElementById('type').value}
-الأسلوب: ${document.getElementById('tone').value}
-المدة التقريبية: ${document.getElementById('duration').value}
-الموضوع: ${topic}
-
-الصيغة المطلوبة:
-🎬 عنوان مقترح
-── المشهد الافتتاحي (Hook) ──
-── المحتوى الرئيسي ── (نقاط واضحة مرقمة)
-── الخاتمة (Call to Action) ──
-
-اكتب السكريبت جاهز للتصوير مباشرة، بدون مقدمات أو شرح.`);
-    out.innerHTML='';
-    let i=0;
-    typingTimer=setInterval(()=>{
-      i+=3;
-      out.innerHTML=escapeHtml(text.slice(0,i)).replace(/\n/g,'<br>')+'<span class="cursor"></span>';
-      out.scrollTop=out.scrollHeight;
-      if(i>=text.length){ clearInterval(typingTimer); out.innerHTML=escapeHtml(text).replace(/\n/g,'<br>'); }
-    },14);
-  }catch(e){
-    const err=(e&&e.message)?e.message:'مشكلة في الاتصال';
-    out.innerHTML='<span class="placeholder">🔴 الخطأ الحقيقي:<br><b style="color:#f87171;font-size:.85rem">'+escapeHtml(err)+'</b></span>';
-    setTimeout(_demoScript, 4000);
-  }
+    const text = await geminiText(`أنت كاتب سكريبتات محتوى محترف.\nاكتب سكريبت كامل باللغة: ${document.getElementById('lang').value}\nنوع المحتوى: ${document.getElementById('type').value}\nالأسلوب: ${document.getElementById('tone').value}\nالمدة: ${document.getElementById('duration').value}\nالموضوع: ${topic}\n\nالصيغة:\n🎬 عنوان مقترح\n── المشهد الافتتاحي (Hook) ──\n── المحتوى الرئيسي ── (نقاط مرقمة)\n── الخاتمة (Call to Action) ──\nاكتب السكريبت جاهز للتصوير مباشرة.`);
+    out.innerHTML='';let i=0;
+    typingTimer=setInterval(()=>{i+=3;out.innerHTML=escapeHtml(text.slice(0,i)).replace(/\n/g,'<br>')+'<span class="cursor"></span>';out.scrollTop=out.scrollHeight;if(i>=text.length){clearInterval(typingTimer);out.innerHTML=escapeHtml(text).replace(/\n/g,'<br>');}},14);
+  }catch(e){ out.innerHTML='<span class="placeholder">🔴 خطأ: '+escapeHtml(e.message)+'</span>'; setTimeout(_demoScript,4000); }
 };
 
-// مولّد الصور — ترجمة بالـ Gemini + توليد مجاني من Pollinations مباشرة
 generateImage = async function(){
   const prompt=document.getElementById('itopic').value.trim();
-  const style=document.getElementById('istyle').value;
   const ratio=document.getElementById('iratio').value;
   const count=parseInt(document.getElementById('icount').value);
   const out=document.getElementById('imageOutput');
   if(!prompt){ out.innerHTML='<span class="placeholder">⚠️ اكتب وصف الصورة الأول</span>'; return; }
-  if(API_KEY==="AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
   const dims=ratio.match(/(\d+)×(\d+)/);
-  const W=dims[1], H=dims[2];
-  out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري تجهيز الوصف وتوليد الصور...</div>';
+  const W=dims[1],H=dims[2];
+  out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري توليد صور حقيقية...</div>';
   try{
-    // 1) ترجمة الوصف لإنجليزي مفصّل (مجاناً)
     let fullPrompt = prompt;
-    try{
-      fullPrompt = await geminiText(`Rewrite this image description as ONE detailed English image-generation prompt (rich visual details: subject, environment, lighting, mood, camera style). Output ONLY the prompt text, nothing else.\nDescription: ${prompt}`);
-    }catch(_){}
-    // 2) عرض الصور من Pollinations مباشرة
+    try{ fullPrompt = await geminiText(`Rewrite this image description as ONE detailed English image-generation prompt (subject, environment, lighting, mood, camera style). Output ONLY the prompt.\nDescription: ${prompt}`); }catch(_){}
     out.innerHTML=`<div class="img-grid ${count===1?'single':''}"></div>`;
     const grid=out.querySelector('.img-grid');
-    let loaded=0;
     for(let k=0;k<count;k++){
       const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=${W}&height=${H}&seed=${Date.now()+k}&nologo=true`;
       if(k===0) lastImageData=url;
       const wrap=document.createElement('div'); wrap.className='img-wrap';
       wrap.innerHTML='<div class="loader" style="padding:60px 0"><div class="spinner"></div></div>';
       const img=document.createElement('img'); img.style.display='none';
-      img.onload=()=>{ wrap.querySelector('.loader').remove(); img.style.display='block'; loaded++; if(loaded===count){info.style.display='block';} };
-      img.onerror=()=>{ wrap.querySelector('.loader').innerHTML='<span style="color:#f87171">⚠️ فشل تحميل الصورة — اضغط توليد تاني</span>'; };
+      img.onload=()=>{ wrap.querySelector('.loader').remove(); img.style.display='block'; };
+      img.onerror=()=>{ wrap.querySelector('.loader').innerHTML='<span style="color:#f87171">⚠️ فشل — اضغط توليد تاني</span>'; };
       img.src=url;
       img.onclick=()=>{lastImageData=url; const w=window.open(); w.document.write(`<img src="${url}" style="max-width:100%">`);};
       const tag=document.createElement('span'); tag.className='img-tag'; tag.textContent=`${W}×${H} · حقيقي 🟢`;
       wrap.appendChild(img); wrap.appendChild(tag); grid.appendChild(wrap);
     }
     document.getElementById('imgDownloadBtn').style.display='inline-flex';
-    const info=document.createElement('p');
-    info.style.cssText='color:var(--muted);font-size:.85rem;margin-top:12px;line-height:1.8;display:none';
-    info.innerHTML=`✅ تم توليد <b style="color:var(--accent)">${count}</b> ${count===1?'صورة حقيقية':'صور حقيقية'} بدقة <b style="color:var(--accent)">${W}×${H}</b>`;
-    out.appendChild(info);
-  }catch(e){
-    const err=(e&&e.message)?e.message:'مشكلة في الاتصال';
-    out.innerHTML='<span class="placeholder">🔴 الخطأ الحقيقي:<br><b style="color:#f87171;font-size:.85rem">'+escapeHtml(err)+'</b></span>';
-    setTimeout(_demoImage, 4000);
-  }
+  }catch(e){ out.innerHTML='<span class="placeholder">🔴 خطأ: '+escapeHtml(e.message)+'</span>'; setTimeout(_demoImage,4000); }
 };
 </script>
 </body>
