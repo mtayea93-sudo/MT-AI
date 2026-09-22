@@ -537,33 +537,51 @@
 </script>
 
 <script>
-// ================== Mt Ai LIVE MODE (يجب يكون بعد الدوال التجريبية) ==================
-const API_BASE = 'http://127.0.0.1:8000';
-const _demoScript = generateScript, _demoImage = generateImage; // احتفظ بالوظائف التجريبية كـ fallback
+// ================== Mt Ai STANDALONE MODE (بدون Backend — يشتغل على GitHub Pages مباشرة) ==================
+// ⚠️ ضع مفتاح Gemini API Key بتاعك في السطر الجاي (بين علامتي التنصيص) — هتلاقي واحد من aistudio.google.com/apikey
+const API_KEY = "AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g";
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${API_KEY}`;
 
-async function apiCall(path, payload){
-  const ctrl = new AbortController(); const t = setTimeout(()=>ctrl.abort(), 90000);
-  try{
-    const r = await fetch(API_BASE+path, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), signal:ctrl.signal});
-    clearTimeout(t);
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    return await r.json();
-  }catch(e){ clearTimeout(t); throw e; }
+const _demoScript = generateScript, _demoImage = generateImage; // احتفظ بالوضع التجريبي كـ fallback
+
+async function geminiText(prompt){
+  const r = await fetch(GEMINI_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({contents:[{parts:[{text:prompt}]}]})
+  });
+  if(!r.ok){
+    const t = await r.text();
+    throw new Error('Gemini error '+r.status+': '+t.slice(0,200));
+  }
+  const j = await r.json();
+  return j.candidates[0].content.parts[0].text;
 }
 
-// استبدال مولّد السكريبت بالنسخة الحقيقية
+// مولّد السكريبت — مباشر من المتصفح
 generateScript = async function(){
   const topic=document.getElementById('topic').value.trim();
   const out=document.getElementById('scriptOutput');
   if(!topic){ out.innerHTML='<span class="placeholder">⚠️ اكتب الموضوع الأول</span>'; return; }
+  if(API_KEY==="AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
   clearInterval(typingTimer);
-  out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري التوليد بواسطة Gemini الحقيقي...</div>';
+  out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري التوليد بواسطة Gemini...</div>';
   try{
-    const data = await apiCall('/api/script', {
-      topic, lang:document.getElementById('lang').value, type:document.getElementById('type').value,
-      tone:document.getElementById('tone').value, duration:document.getElementById('duration').value
-    });
-    const text = data.text; out.innerHTML='';
+    const text = await geminiText(`أنت كاتب سكريبتات محتوى محترف.
+اكتب سكريبت كامل باللغة: ${document.getElementById('lang').value}
+نوع المحتوى: ${document.getElementById('type').value}
+الأسلوب: ${document.getElementById('tone').value}
+المدة التقريبية: ${document.getElementById('duration').value}
+الموضوع: ${topic}
+
+الصيغة المطلوبة:
+🎬 عنوان مقترح
+── المشهد الافتتاحي (Hook) ──
+── المحتوى الرئيسي ── (نقاط واضحة مرقمة)
+── الخاتمة (Call to Action) ──
+
+اكتب السكريبت جاهز للتصوير مباشرة، بدون مقدمات أو شرح.`);
+    out.innerHTML='';
     let i=0;
     typingTimer=setInterval(()=>{
       i+=3;
@@ -572,13 +590,13 @@ generateScript = async function(){
       if(i>=text.length){ clearInterval(typingTimer); out.innerHTML=escapeHtml(text).replace(/\n/g,'<br>'); }
     },14);
   }catch(e){
-    const err = (e && e.message) ? e.message : 'مشكلة في الاتصال';
-    out.innerHTML='<span class="placeholder">🔴 الخطأ الحقيقي:<br><b style="color:#f87171;font-size:.85rem">'+escapeHtml(err)+'</b><br><br>لو الخطأ فيه "Failed to fetch" يبقى السيرفر مش شغال</span>';
+    const err=(e&&e.message)?e.message:'مشكلة في الاتصال';
+    out.innerHTML='<span class="placeholder">🔴 الخطأ الحقيقي:<br><b style="color:#f87171;font-size:.85rem">'+escapeHtml(err)+'</b></span>';
     setTimeout(_demoScript, 4000);
   }
 };
 
-// استبدال مولّد الصور بالنسخة الحقيقية
+// مولّد الصور — ترجمة بالـ Gemini + توليد مجاني من Pollinations مباشرة
 generateImage = async function(){
   const prompt=document.getElementById('itopic').value.trim();
   const style=document.getElementById('istyle').value;
@@ -586,34 +604,44 @@ generateImage = async function(){
   const count=parseInt(document.getElementById('icount').value);
   const out=document.getElementById('imageOutput');
   if(!prompt){ out.innerHTML='<span class="placeholder">⚠️ اكتب وصف الصورة الأول</span>'; return; }
-  out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري توليد صور حقيقية بدقة عالية...</div>';
+  if(API_KEY==="AQ.Ab8RN6LSY83FuRizHPALmhWdBuconOS5cq9FR6a2hWB3p2MU4g"){ out.innerHTML='<span class="placeholder">⚠️ لازم تحط مفتاح API_KEY في أول سطر في كود الصفحة</span>'; return; }
+  const dims=ratio.match(/(\d+)×(\d+)/);
+  const W=dims[1], H=dims[2];
+  out.innerHTML='<div class="loader"><div class="spinner"></div> 🟢 جاري تجهيز الوصف وتوليد الصور...</div>';
   try{
-    const dims=ratio.match(/(\d+)×(\d+)/);
-    const data = await apiCall('/api/image', {prompt, style, ratio:`${dims[1]}x${dims[2]}`, count});
-    const W=dims[1], H=dims[2];
-    out.innerHTML=`<div class="img-grid ${data.images.length===1?'single':''}"></div>`;
+    // 1) ترجمة الوصف لإنجليزي مفصّل (مجاناً)
+    let fullPrompt = prompt;
+    try{
+      fullPrompt = await geminiText(`Rewrite this image description as ONE detailed English image-generation prompt (rich visual details: subject, environment, lighting, mood, camera style). Output ONLY the prompt text, nothing else.\nDescription: ${prompt}`);
+    }catch(_){}
+    // 2) عرض الصور من Pollinations مباشرة
+    out.innerHTML=`<div class="img-grid ${count===1?'single':''}"></div>`;
     const grid=out.querySelector('.img-grid');
-    data.images.forEach((b64,idx)=>{
-      const url=`data:image/png;base64,${b64}`;
-      if(idx===0) lastImageData=url;
+    let loaded=0;
+    for(let k=0;k<count;k++){
+      const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=${W}&height=${H}&seed=${Date.now()+k}&nologo=true`;
+      if(k===0) lastImageData=url;
       const wrap=document.createElement('div'); wrap.className='img-wrap';
-      const img=document.createElement('img'); img.src=url;
+      wrap.innerHTML='<div class="loader" style="padding:60px 0"><div class="spinner"></div></div>';
+      const img=document.createElement('img'); img.style.display='none';
+      img.onload=()=>{ wrap.querySelector('.loader').remove(); img.style.display='block'; loaded++; if(loaded===count){info.style.display='block';} };
+      img.onerror=()=>{ wrap.querySelector('.loader').innerHTML='<span style="color:#f87171">⚠️ فشل تحميل الصورة — اضغط توليد تاني</span>'; };
+      img.src=url;
       img.onclick=()=>{lastImageData=url; const w=window.open(); w.document.write(`<img src="${url}" style="max-width:100%">`);};
       const tag=document.createElement('span'); tag.className='img-tag'; tag.textContent=`${W}×${H} · حقيقي 🟢`;
       wrap.appendChild(img); wrap.appendChild(tag); grid.appendChild(wrap);
-    });
+    }
     document.getElementById('imgDownloadBtn').style.display='inline-flex';
     const info=document.createElement('p');
-    info.style.cssText='color:var(--muted);font-size:.85rem;margin-top:12px;line-height:1.8';
-    info.innerHTML=`✅ تم توليد <b style="color:var(--accent)">${data.images.length}</b> ${data.images.length===1?'صورة حقيقية':'صور حقيقية'} بدقة <b style="color:var(--accent)">${W}×${H}</b> بواسطة Nano Banana 🍌`;
+    info.style.cssText='color:var(--muted);font-size:.85rem;margin-top:12px;line-height:1.8;display:none';
+    info.innerHTML=`✅ تم توليد <b style="color:var(--accent)">${count}</b> ${count===1?'صورة حقيقية':'صور حقيقية'} بدقة <b style="color:var(--accent)">${W}×${H}</b>`;
     out.appendChild(info);
   }catch(e){
-    const err = (e && e.message) ? e.message : 'مشكلة في الاتصال';
-    out.innerHTML='<span class="placeholder">🔴 الخطأ الحقيقي:<br><b style="color:#f87171;font-size:.85rem">'+escapeHtml(err)+'</b><br><br>لو الخطأ فيه "Failed to fetch" يبقى السيرفر مش شغال</span>';
+    const err=(e&&e.message)?e.message:'مشكلة في الاتصال';
+    out.innerHTML='<span class="placeholder">🔴 الخطأ الحقيقي:<br><b style="color:#f87171;font-size:.85rem">'+escapeHtml(err)+'</b></span>';
     setTimeout(_demoImage, 4000);
   }
 };
 </script>
-<script src="mtayea-signature.js"></script>
 </body>
 </html>
