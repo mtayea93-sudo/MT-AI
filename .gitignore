@@ -1,0 +1,20 @@
+# مفاتيح وأسرار — ممنوع رفعها أبداً
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# النظام
+.DS_Store
+Thumbs.db
+
+# ملفات مؤقتة
+*.log
+*.tmp
