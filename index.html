@@ -1,6 +1,40 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<!-- 🔄 تحديث إجباري: أي جهاز يفتح نسخة قديمة بيتحدّث فوراً -->
+<script>
+(function () {
+  var V = 'mtai-2026-10-07';
+  window.APP_VERSION = V;
+  function nukedReload() {
+    if (window.__nuking) return; window.__nuking = true;
+    if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); });
+    if ('caches' in window) caches.keys().then(function (ks) { ks.forEach(function (k) { caches.delete(k); }); });
+    setTimeout(function () { location.reload(); }, 300);
+  }
+  async function checkVersion() {
+    try {
+      var r = await fetch('version.json?ts=' + Date.now(), { cache: 'no-store' });
+      var j = await r.json();
+      if (j && j.v && j.v !== V) nukedReload();
+    } catch (e) {}
+  }
+  checkVersion();
+  setInterval(checkVersion, 45000);
+  if ('serviceWorker' in navigator) {
+    var hadController = !!navigator.serviceWorker.controller;
+    var refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (!hadController || refreshing) return;
+      refreshing = true; location.reload();
+    });
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+    setInterval(function () {
+      navigator.serviceWorker.getRegistration().then(function (reg) { if (reg) reg.update(); });
+    }, 45000);
+  }
+})();
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MT AI — مولّد السكريبتات والفيديوهات والصور بالذكاء الاصطناعي</title>
@@ -425,8 +459,9 @@
 
 <script>
 // ================== Mt Ai STANDALONE MODE (GitHub Pages) ==================
-const API_KEY = "AQ.Ab8RN6I3ocnJ6Y3BrR1fRtI4FRyNvyijctmXD9BIKPI4KVDfDA";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${API_KEY}`;
+/* المفتاح بقى مخفي على السيرفر — المتصفح بيتكلم مع الـ Proxy بس */
+const PROXY_URL = "https://mtayea-gemini-proxy.mhmd93.workers.dev/v1/gemini";
+const GEMINI_URL = PROXY_URL;
 
 const _demoScript = generateScript, _demoImage = generateImage;
 
