@@ -4,7 +4,7 @@
 <!-- 🔄 تحديث إجباري: أي جهاز يفتح نسخة قديمة بيتحدّث فوراً -->
 <script>
 (function () {
-  var V = 'mtai-2026-10-12b';
+  var V = 'mtai-2026-10-16';
   window.APP_VERSION = V;
   function nukedReload() {
     if (window.__nuking) return; window.__nuking = true;
@@ -306,6 +306,7 @@
             </select>
           </div>
           <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="generateVideo()">🎬 توليد الفيديو</button>
+          <p style="color:var(--muted);font-size:.8rem;margin-top:10px;line-height:1.7">ℹ️ توليد الفيديو الحقيقي قيد التطوير — المعاينة الحالية تجريبية فقط. للفيديو الجاهز: ولّد السكريبت والصور من الأدوات اللي فوق وركّبهم في برنامج مونتاج زي CapCut.</p>
         </div>
 
         <div class="card">
@@ -472,8 +473,12 @@ const GEMINI_URL = PROXY_URL;
 const _demoScript = generateScript, _demoImage = generateImage;
 
 async function geminiText(prompt){
-  const r = await fetch(GEMINI_URL, {method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
-  if(!r.ok){ throw new Error('Gemini error '+r.status); }
+  const ctrl=new AbortController(); const tmr=setTimeout(()=>ctrl.abort(),30000);
+  let r;
+  try{ r = await fetch(GEMINI_URL, {method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify({contents:[{parts:[{text:prompt}]}]}),signal:ctrl.signal}); }
+  catch(e){ clearTimeout(tmr); throw new Error('خدمة الذكاء الاصطناعي مش بترد حاليًا — جرّب تاني بعد دقايق'); }
+  clearTimeout(tmr);
+  if(!r.ok){ throw new Error('خدمة الذكاء الاصطناعي ردّت بخطأ ('+r.status+') — جرّب تاني بعد دقايق'); }
   const j = await r.json();
   return j.candidates[0].content.parts[0].text;
 }
@@ -488,7 +493,7 @@ generateScript = async function(){
     const text = await geminiText(`أنت كاتب سكريبتات محتوى محترف.\nاكتب سكريبت كامل باللغة: ${document.getElementById('lang').value}\nنوع المحتوى: ${document.getElementById('type').value}\nالأسلوب: ${document.getElementById('tone').value}\nالمدة: ${document.getElementById('duration').value}\nالموضوع: ${topic}\n\nالصيغة:\n🎬 عنوان مقترح\n── المشهد الافتتاحي (Hook) ──\n── المحتوى الرئيسي ── (نقاط مرقمة)\n── الخاتمة (Call to Action) ──\nاكتب السكريبت جاهز للتصوير مباشرة.`);
     out.innerHTML='';let i=0;
     typingTimer=setInterval(()=>{i+=3;out.innerHTML=escapeHtml(text.slice(0,i)).replace(/\n/g,'<br>')+'<span class="cursor"></span>';out.scrollTop=out.scrollHeight;if(i>=text.length){clearInterval(typingTimer);out.innerHTML=escapeHtml(text).replace(/\n/g,'<br>');}},14);
-  }catch(e){ out.innerHTML='<span class="placeholder">🔴 خطأ: '+escapeHtml(e.message)+'</span>'; setTimeout(_demoScript,4000); }
+  }catch(e){ out.innerHTML='<div style="text-align:center;padding:24px 10px"><div style="font-size:2.2rem">🔧</div><p style="font-weight:800;margin:10px 0 4px">خدمة توليد السكريبتات متوقفة مؤقتًا</p><p style="color:var(--muted);font-size:.9rem">'+escapeHtml(e.message)+'</p><button class="btn btn-primary" style="margin-top:12px" onclick="generateScript()">🔄 إعادة المحاولة</button></div>'; }
 };
 
 generateImage = async function(){
@@ -520,7 +525,7 @@ generateImage = async function(){
       wrap.appendChild(img); wrap.appendChild(tag); grid.appendChild(wrap);
     }
     document.getElementById('imgDownloadBtn').style.display='inline-flex';
-  }catch(e){ out.innerHTML='<span class="placeholder">🔴 خطأ: '+escapeHtml(e.message)+'</span>'; setTimeout(_demoImage,4000); }
+  }catch(e){ out.innerHTML='<div style="text-align:center;padding:24px 10px"><div style="font-size:2.2rem">🔧</div><p style="font-weight:800;margin:10px 0 4px">خدمة توليد الصور متوقفة مؤقتًا</p><p style="color:var(--muted);font-size:.9rem">'+escapeHtml(e.message)+'</p><button class="btn btn-primary" style="margin-top:12px" onclick="generateImage()">🔄 إعادة المحاولة</button></div>'; }
 };
 </script>
 <script>
